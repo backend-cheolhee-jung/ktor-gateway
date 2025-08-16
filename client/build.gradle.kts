@@ -12,8 +12,11 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             api(project(":core"))
+            api("com.fasterxml.jackson.module:jackson-module-kotlin")
+            implementation("com.fasterxml.jackson.core:jackson-annotations:3.0-rc5")
             api("org.jetbrains.kotlinx:kotlinx-rpc-krpc-ktor-client:$kotlinxRpcVersion")
             api("io.ktor:ktor-client-core:$ktorVersion")
+            api("io.ktor:ktor-client-cio-jvm")
         }
     }
 }
