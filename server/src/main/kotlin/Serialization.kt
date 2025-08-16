@@ -1,28 +1,25 @@
 package com.example
 
-import com.fasterxml.jackson.databind.*
-import io.ktor.http.*
-import io.ktor.http.content.*
+import com.fasterxml.jackson.databind.DeserializationFeature
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.databind.SerializationFeature
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import io.ktor.serialization.jackson.*
-import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*
-import io.ktor.server.plugins.cachingheaders.*
-import io.ktor.server.plugins.calllogging.*
 import io.ktor.server.plugins.contentnegotiation.*
-import io.ktor.server.plugins.defaultheaders.*
-import io.ktor.server.plugins.forwardedheaders.*
-import io.ktor.server.plugins.httpsredirect.*
-import io.ktor.server.plugins.statuspages.*
-import io.ktor.server.request.*
-import io.ktor.server.response.*
-import io.ktor.server.routing.*
-import kotlinx.rpc.krpc.serialization.json.*
-import org.slf4j.event.*
+import io.ktor.util.*
+
+val objectMapperKey = AttributeKey<ObjectMapper>("ObjectMapper")
 
 fun Application.configureSerialization() {
     install(ContentNegotiation) {
         jackson {
             enable(SerializationFeature.INDENT_OUTPUT)
+            disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
+            registerModule(JavaTimeModule())
+            configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+            configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true)
+            this@configureSerialization.attributes.put(objectMapperKey, this@jackson)
         }
     }
 }
