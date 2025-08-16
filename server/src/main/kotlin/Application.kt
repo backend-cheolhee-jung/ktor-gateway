@@ -1,5 +1,6 @@
 package com.example
 
+import com.example.plugin.configureExceptionHandling
 import com.example.plugin.configureFrameworks
 import com.example.plugin.configureHTTP
 import com.example.plugin.configureMonitoring
@@ -16,5 +17,6 @@ fun Application.module() {
     configureMonitoring()
     configureSerialization()
     configureFrameworks()
+    configureExceptionHandling()
     configureRouting()
 }
