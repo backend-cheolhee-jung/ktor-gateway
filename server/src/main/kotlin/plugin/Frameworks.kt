@@ -1,4 +1,4 @@
-package com.example
+package com.example.plugin
 
 import io.ktor.server.application.*
 import kotlinx.rpc.krpc.ktor.server.Krpc
