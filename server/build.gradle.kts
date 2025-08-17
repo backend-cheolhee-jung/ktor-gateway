@@ -2,6 +2,7 @@ val koinVersion: String by project
 val kotlinVersion: String by project
 val kotlinxRpcVersion: String by project
 val logbackVersion: String by project
+val arrowVersion: String by project
 
 plugins {
     kotlin("jvm") version "2.1.10"
@@ -31,6 +32,8 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-rpc-krpc-ktor-client:$kotlinxRpcVersion")
     implementation("io.ktor:ktor-server-cio")
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
+    implementation ("io.arrow-kt:arrow-core:${arrowVersion}")
+    implementation("io.arrow-kt:arrow-fx-coroutines:${arrowVersion}")
     testImplementation("io.ktor:ktor-server-test-host")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion")
 }
