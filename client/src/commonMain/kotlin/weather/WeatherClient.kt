@@ -5,7 +5,10 @@ import com.example.util.Header.APPLICATION_JSON
 import com.example.util.call
 import io.ktor.client.*
 import io.ktor.http.*
-import weather.*
+import weather.City
+import weather.Weather
+import weather.WeatherClient
+import weather.WeatherResponse
 
 class WeatherClientImpl : WeatherClient {
     override suspend fun request(city: City): WeatherResponse {
@@ -21,7 +24,7 @@ class WeatherClientImpl : WeatherClient {
         return WeatherResponse.of(
             city = city,
             weather = Weather.fromEmoji(weatherToString),
-            temperature = temperature.toDoubleOrNull() ?: 0.0
+            temperature = temperature.toDoubleOrNull()
         )
     }
 

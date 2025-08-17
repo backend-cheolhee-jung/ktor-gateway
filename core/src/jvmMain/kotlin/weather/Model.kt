@@ -3,14 +3,23 @@ package weather
 data class WeatherResponse(
     val city: City,
     val weather: Weather,
-    val temperature: Double,
+    val temperature: Double?,
 ) {
     companion object {
         @JvmStatic
         fun of(
             city: City,
             weather: Weather,
-            temperature: Double
+            temperature: Double?,
         ) = WeatherResponse(city, weather, temperature)
+
+        @JvmStatic
+        fun empty(
+            city: City,
+        ) = WeatherResponse(
+            city = city,
+            weather = Weather.UNKNOWN,
+            temperature = null,
+        )
     }
 }

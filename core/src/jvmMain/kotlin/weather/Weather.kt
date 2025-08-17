@@ -13,10 +13,10 @@ enum class Weather(
     THUNDERSTORM("⛈️"),
     WINDY("💨"),
     FOGGY("🌫️"),
-    HAZY("🌫️");
+    UNKNOWN("❓");
 
     companion object {
         fun fromEmoji(emoji: String) =
-            entries.firstOrNull { it.emoji == emoji } ?: SUNNY
+            entries.firstOrNull { it.emoji == emoji } ?: UNKNOWN
     }
 }
