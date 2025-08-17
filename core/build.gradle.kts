@@ -14,8 +14,6 @@ kotlin {
         commonMain.dependencies {
             api("org.jetbrains.kotlinx:kotlinx-rpc-krpc-serialization-json:$kotlinxRpcVersion")
             api("org.jetbrains.kotlinx:kotlinx-rpc-core:$kotlinxRpcVersion")
-            implementation("io.ktor:ktor-serialization-kotlinx-json")
-            implementation("io.ktor:ktor-serialization-jackson")
             implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinxCoroutinesVersion")
             implementation("io.arrow-kt:arrow-core:$arrowVersion")
             implementation("io.arrow-kt:arrow-fx-coroutines:$arrowVersion")

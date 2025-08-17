@@ -17,7 +17,6 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             api(project(":core"))
-            api("com.fasterxml.jackson.module:jackson-module-kotlin")
             api("io.ktor:ktor-client-core:$ktorVersion")
             api("io.ktor:ktor-client-cio-jvm")
             implementation("org.jetbrains.kotlinx:kotlinx-rpc-krpc-ktor-server:${kotlinxRpcVersion}")
