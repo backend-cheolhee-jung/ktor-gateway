@@ -10,7 +10,6 @@ import kotlinx.rpc.krpc.ktor.client.rpcConfig
 import kotlinx.rpc.krpc.serialization.json.json
 import org.koin.dsl.module
 
-
 val ktorRpcClientModule = module {
     single<KtorRpcClient> {
         HttpClient {

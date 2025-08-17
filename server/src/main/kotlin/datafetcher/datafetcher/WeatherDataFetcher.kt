@@ -1,4 +1,4 @@
-package com.example.datafetcher
+package com.example.datafetcher.datafetcher
 
 import kotlinx.rpc.krpc.ktor.client.KtorRpcClient
 import kotlinx.rpc.withService
