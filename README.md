@@ -1,6 +1,6 @@
-# ktor-gateway
+# krpc-gateway
 
-Ktor로 외부 API를 병렬로 호출하고 결과를 조합하여 응답하는 API Gateway를 구현하는 프로젝트입니다.  
+Ktor + KRPC로 외부 API를 병렬로 호출하고 결과를 조합하여 응답하는 API Gateway를 구현하는 프로젝트입니다.  
 `Arrow KT`를 사용해서 함수형 프로그래밍 스타일로 작성합니다.  
 특정 API 호출이 실패하더라도 다른 API 호출 결과를 조합하여 응답할 수 있도록 함수형 프로그래밍으로 작성합니다.  
 
