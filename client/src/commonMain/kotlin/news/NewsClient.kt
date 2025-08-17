@@ -10,7 +10,11 @@ import news.NewsResponse
 import news.Station
 import news.StationUrlManager
 
-class NewsClientImpl : NewsClient {
+class NewsClientImpl(
+    private val httpClient: HttpClient,
+    private val bbcXmlParser: XmlParser,
+    private val newYorkTimesXmlParser: XmlParser,
+) : NewsClient {
     override suspend fun request(station: Station): List<NewsResponse> {
         val url = StationUrlManager.getUrl(station)
         val response = httpClient.call<String>(
@@ -19,10 +23,9 @@ class NewsClientImpl : NewsClient {
             headers = mapOf(ACCEPT to APPLICATION_JSON)
         )
 
-        return XmlParser.parse(station = station, value = response)
-    }
-
-    private companion object {
-        val httpClient = HttpClient()
+        return when (station) {
+            Station.BBC -> bbcXmlParser.parse(station, response)
+            Station.NEW_YORK_TIMES -> newYorkTimesXmlParser.parse(station, response)
+        }
     }
 }

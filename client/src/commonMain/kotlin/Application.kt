@@ -1,8 +1,12 @@
 package com.example
 
 import Environment
+import Environment.RpcUrl.NEWS
+import Environment.RpcUrl.WEATHER
+import com.example.news.BbcXmlParser
 import com.example.news.NewsClientImpl
 import com.example.weather.WeatherClientImpl
+import io.ktor.client.*
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.routing.*
@@ -27,19 +31,25 @@ fun Application.module() {
             encodedPath = Environment.ENCODED_PATH
         }
 
-        rpc("/weather") {
+        rpc(WEATHER) {
             rpcConfig {
                 serialization { json() }
             }
 
             registerService<WeatherClient>(::WeatherClientImpl)
         }
-        rpc("/news") {
+        rpc(NEWS) {
             rpcConfig {
                 serialization { json() }
             }
 
-            registerService<NewsClient>(::NewsClientImpl)
+            registerService<NewsClient> {
+                NewsClientImpl(
+                    httpClient = HttpClient(),
+                    bbcXmlParser = BbcXmlParser(),
+                    newYorkTimesXmlParser = BbcXmlParser(),
+                )
+            }
         }
     }
 }
