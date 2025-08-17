@@ -1,4 +1,4 @@
-package util
+package com.example.util
 
 import io.ktor.client.*
 import io.ktor.client.call.*

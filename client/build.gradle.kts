@@ -1,6 +1,5 @@
 val kotlinxRpcVersion: String by project
 val ktorVersion: String by project
-val koinVersion: String by project
 
 plugins {
     kotlin("multiplatform") version "2.1.10"
@@ -26,8 +25,6 @@ kotlin {
             implementation("org.jetbrains.kotlinx:kotlinx-rpc-krpc-ktor-client:$kotlinxRpcVersion")
             implementation("io.ktor:ktor-server-core")
             implementation("io.ktor:ktor-server-cio")
-            implementation("io.insert-koin:koin-ktor:${koinVersion}")
-            implementation("io.insert-koin:koin-logger-slf4j:${koinVersion}")
             implementation("com.fasterxml.jackson.core:jackson-annotations:3.0-rc5")
         }
     }

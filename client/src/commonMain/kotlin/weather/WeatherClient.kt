@@ -1,11 +1,11 @@
-package weather
+package com.example.weather
 
+import com.example.util.Header.ACCEPT
+import com.example.util.Header.APPLICATION_JSON
+import com.example.util.call
 import io.ktor.client.*
 import io.ktor.http.*
-import util.Header.ACCEPT
-import util.Header.APPLICATION_JSON
-import util.call
-
+import weather.*
 
 class WeatherClientImpl : WeatherClient {
     override suspend fun request(city: City): WeatherResponse {

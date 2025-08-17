@@ -1,3 +1,5 @@
+package com.example
+
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.routing.*
@@ -6,7 +8,7 @@ import kotlinx.rpc.krpc.ktor.server.Krpc
 import kotlinx.rpc.krpc.ktor.server.rpc
 import kotlinx.rpc.krpc.serialization.json.json
 import weather.WeatherClient
-import weather.WeatherClientImpl
+import com.example.weather.WeatherClientImpl
 
 fun main(args: Array<String>) {
     io.ktor.server.cio.EngineMain.main(args)
@@ -19,7 +21,7 @@ fun Application.module() {
         rpc("/weather") {
             url {
                 host = "localhost"
-                port = 8080
+                port = 8081
                 encodedPath = "cherhy.jung"
             }
 
@@ -29,7 +31,7 @@ fun Application.module() {
                 }
             }
 
-            registerService<WeatherClient> { WeatherClientImpl() }
+            registerService<WeatherClient>(::WeatherClientImpl)
         }
     }
 }
