@@ -7,10 +7,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import javax.xml.parsers.DocumentBuilderFactory
 
-
 object XmlParser {
-    private val formatter = DateTimeFormatter.RFC_1123_DATE_TIME
-
     fun parse(value: String, station: Station): List<NewsResponse> {
         val factory = DocumentBuilderFactory.newInstance()
         val builder = factory.newDocumentBuilder()
@@ -26,10 +23,10 @@ object XmlParser {
             val description = item.getElementsByTagName(DESCRIPTION).item(0).textContent.trim()
 
             val pubDateText = item.getElementsByTagName(PUBLISHED_AT).item(0)?.textContent
-            val publishedAt = pubDateText?.let { LocalDateTime.parse(it, formatter) }
+            val publishedAt = pubDateText?.let { LocalDateTime.parse(it, DateTimeFormatter.RFC_1123_DATE_TIME) }
 
-            val imageUrl = (item.getElementsByTagName(MEDIA_THUMBNAIL).item(0) as? Element)
-                ?.getAttribute(URL) ?: EMPTY
+            val mediaThumbnail = item.getElementsByTagName(MEDIA_THUMBNAIL).item(0) as? Element
+            val imageUrl = mediaThumbnail?.getAttribute(URL) ?: EMPTY
 
             newsList.add(
                 NewsResponse(
