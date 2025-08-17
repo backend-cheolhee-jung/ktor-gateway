@@ -20,9 +20,9 @@ fun Application.module() {
     routing {
         rpc("/weather") {
             url {
-                host = "localhost"
-                port = 8081
-                encodedPath = "cherhy.jung"
+                host = Environment.HOST
+                port = Environment.PORT
+                encodedPath = Environment.ENCODED_PATH
             }
 
             rpcConfig {
