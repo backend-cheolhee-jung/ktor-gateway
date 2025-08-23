@@ -1,11 +1,14 @@
 package com.example
 
 import Environment
+import Environment.RpcUrl.EXCHANGE_RATE
 import Environment.RpcUrl.NEWS
 import Environment.RpcUrl.WEATHER
+import com.example.exchangerate.ExchangeRateClientImpl
 import com.example.news.BbcXmlParser
 import com.example.news.NewsClientImpl
 import com.example.weather.WeatherClientImpl
+import exchangerate.ExchangeRateClient
 import io.ktor.client.*
 import io.ktor.http.*
 import io.ktor.server.application.*
@@ -50,6 +53,13 @@ fun Application.module() {
                     newYorkTimesXmlParser = BbcXmlParser(),
                 )
             }
+        }
+        rpc(EXCHANGE_RATE) {
+            rpcConfig {
+                serialization { json() }
+            }
+
+             registerService<ExchangeRateClient>(::ExchangeRateClientImpl)
         }
     }
 }
