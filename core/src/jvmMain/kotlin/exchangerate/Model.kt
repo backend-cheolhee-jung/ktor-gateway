@@ -22,5 +22,17 @@ data class ExchangeRateResponse(
                 rate = rate,
                 datetime = LocalDateTime.now(),
             )
+
+        @JvmStatic
+        fun empty(
+            to: Currency,
+            from: Currency,
+        ) =
+            ExchangeRateResponse(
+                from = from,
+                to = to,
+                rate = BigDecimal.ZERO,
+                datetime = LocalDateTime.now(),
+            )
     }
 }
