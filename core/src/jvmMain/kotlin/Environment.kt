@@ -6,5 +6,6 @@ object Environment {
     object RpcUrl {
         const val WEATHER = "/weather"
         const val NEWS = "/news"
+        const val EXCHANGE_RATE = "/exchange-rate"
     }
 }
